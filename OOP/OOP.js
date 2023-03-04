@@ -52,11 +52,19 @@
 // console.log(Hyndai)
 
 class Car{
-  constructor(brand, color, maxSpeed, chassisNumber) {
+  constructor(brand, color, maxSpeed) {
     this.brand = brand;
     this.color = color;
     this.maxspeed = maxSpeed;
-    this.chassisNumber = chassisNumber;
+    this._chassisNumber = `${brand}-${Math.floor(Math.random()*1000)+1}`;
+  }
+
+  get chassisNumber() {
+    return this._chassisNumber;
+  }
+
+  set chassisNumber(chassisNumber) {
+    console.log(' you are not allowed to change the chassis number');
   }
 
   drive() {
@@ -72,9 +80,73 @@ class Car{
   }
 }
 
-const Raize = new Car('Toyoya', 'Black', 1500, 'AC321');
-const HRV = new Car('Honda', 'Red', 1500, "32DF3");
+const Raize = new Car('Toyoya', 'Black', 1500);
+const HRV = new Car('Honda', 'Red', 1500);
+// HRV.chassisNumber = 'HRV-nan0';
+// console.log(HRV.chassisNumber);
+// console.log(Raize)
+// console.log(HRV)
+// HRV.turn();
 
-console.log(Raize)
-console.log(HRV)
-HRV.turn();
+
+//Getter and Setter
+class User{
+  constructor(firstName, lastName) {
+    this.firstName = firstName;
+    this.lastName = lastName
+  }
+
+  get fullName() {
+    return `${this.firstName} ${this.lastName}`
+  }
+  set fullName(fullName) {
+    const [firstname, lastName] = fullName.split(' ');
+    this.firstName = firstname;
+    this.lastName = lastName;
+  }
+}
+
+const user = new User("Bambang", "Pamungkas");
+// console.log(user);
+// console.log(user.fullName);
+
+//Method lebih dalam
+
+class CarMethod{
+  constructor(brand, color, maxSpeed) {
+    this.brand = brand;
+    this.color = color;
+    this.maxSpeed = maxSpeed;
+    this._chassisNumber = this._generateChassisNumber();
+  }
+
+  get chassisNumber() {
+    return this._chassisNumber;
+  }
+
+  set chassisNumber(chassisNumber) {
+    console.log('you are not allowed to change the chassis number');
+  }
+
+  //Methods
+  drive() {
+    console.log(`${this.brand} ${this.color} is driving`);
+  }
+
+  reverse() {
+    console.log(`${this.brand} ${this.color} is reversing`);
+  }
+
+  turn(direction) {
+    console.log(`${this.brand} ${this.color} is turning ${direction}`);
+  }
+
+  _generateChassisNumber() {
+    return `${this.brand}-${Math.floor(Math.random() * 1000)}`;
+  }
+}
+
+const car = new CarMethod("Honda","Blue",14000);
+
+// console.log(car._chassisNumber)
+
