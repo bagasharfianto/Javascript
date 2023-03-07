@@ -186,6 +186,7 @@ class CarVisibility {
 
 }
 
-const carV = new CarVisibility();
-carV.#chassisNumber = "tutor";
-console.log(carV.chassisNumber);
+// const carV = new CarVisibility();
+// carV.#chassisNumber = "tutor";
+// console.log(carV.chassisNumber);
+
