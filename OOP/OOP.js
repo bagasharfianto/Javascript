@@ -150,3 +150,42 @@ const car = new CarMethod("Honda","Blue",14000);
 
 // console.log(car._chassisNumber)
 
+//Member Visibility
+class CarVisibility {
+  #chassisNumber = null;
+  constructor(brand, color, maxSpeed) {
+    this.brand = brand;
+    this.color = color;
+    this.maxspeed = maxSpeed;
+    this.#chassisNumber = this.#generateChassisNumber();
+  }
+
+  get chassisNumber() {
+    return this.#chassisNumber;
+  }
+
+  set chassisNumber(chassisNumber) {
+    console.log('you are not allowed to change the chassis number');
+  }
+
+  drive() {
+    console.log(`${this.brand} ${this.color} is driving`);
+  }
+
+  reverse() {
+    console.log(`${this.brand} ${this.color} is reversing`);
+  }
+ 
+  turn(direction) {
+    console.log(`${this.brand} ${this.color} is turning ${direction}`);
+  }
+ 
+  #generateChassisNumber() {
+    return `${this.brand}-${Math.floor(Math.random() * 1000)}`;
+  }
+
+}
+
+const carV = new CarVisibility();
+carV.#chassisNumber = "tutor";
+console.log(carV.chassisNumber);
